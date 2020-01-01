@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.dao.PersonDao">
+    <resultMap id="myPerson" type="demo.model.Person">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="address" property="address" ></result>
+        <result column="email_gb" property="emailGb" ></result>
+    </resultMap>
+
+    <select id="getPersonById" resultType="per">
+      select * from person where id = #{id}
+   </select>
+
+    <select id="getPersonByIdAndName" resultType="per">
+        select * from person where id = #{param1} and name = #{name}
+    </select>
+
+    <select id="getPersons" resultType="per">
+        select * from person where id > #{id}
+    </select>
+
+    <select id="getPersonInTableByIdAndName" resultType="per">
+        select * from ${param1} where id = #{param2} and name = #{name}
+    </select>
+
+    <select id="getPersonInMap" resultType="map">
+        select * from person where id = #{id}
+    </select>
+
+    <select id="getPersonMaps" resultType="demo.model.Person">
+        select * from person where id > #{id}
+    </select>
+
+    <select id="getPersonByMap" resultType="demo.model.Person">
+        select * from person where id =#{id} and name = #{name}
+    </select>
+
+    <insert id="insertPerson" parameterType="demo.model.Person" useGeneratedKeys="true" keyProperty="id">
+        insert into person (id,name,address,email_gb) values(#{id}, #{name}, #{address}, #{emailGb})
+    </insert>
+
+    <update id="updatePerson" parameterType="demo.model.Person">
+        update person set name = #{name}, address = #{address}, email_gb=#{emailGb}
+        where id = #{id};
+    </update>
+
+    <delete id="deletePersonById" parameterType="_int">
+        delete from person where id = #{id};
+    </delete>
+
+    <select id="getPersonSelfDefineResultMap" resultMap="myPerson">
+        select * from person where id=#{id}
+    </select>
+</mapper>

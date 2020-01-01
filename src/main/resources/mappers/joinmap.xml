@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.dao.PersonHomeDao">
+
+    <!-- one to one-->
+    <resultMap id="personMap" type="demo.model.PersonHome">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="address" property="address"></result>
+        <result column="email_gb" property="emailGb"></result>
+        <result column="home_id" property="home.homeId"></result>
+        <result column="home_address" property="home.homeAddress"></result>
+        <!--<association property="home" select="demo.dao.PersonHomeDao.selectHome" column="home_id" javaType="demo.model.Home">-->
+            <!--<id column="home_id" property="homeId"></id>-->
+            <!--<result column="home_address" property="homeAddress"></result>-->
+        <!--</association>-->
+        <!--<association property="home" javaType="demo.model.Home">-->
+            <!--<id column="home_id" property="homeId"></id>-->
+            <!--<result column="home_address" property="homeAddress"></result>-->
+        <!--</association>-->
+
+    </resultMap>
+
+    <!-- one to many-->
+    <resultMap id="homePersons" type="demo.model.Home">
+        <id column="home_id" property="homeId"></id>
+        <result column="home_address" property="homeAddress"></result>
+        <collection property="persons" ofType="demo.model.Person" fetchType="eager">
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="address" property="address"></result>
+            <result column="email_gb" property="emailGb"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="homeJoinPerson" type="demo.model.Home">
+        <id column="home_id" property="homeId"></id>
+        <result column="home_address" property="homeAddress"></result>
+        <collection property="persons" select="selectPerson" column="home_id">
+        </collection>
+    </resultMap>
+
+
+
+    <!-- one to one-->
+    <select id="getPersonHome" resultMap="personMap">
+        select t1.id, t1.address, t1.name, t1.email_gb, t2.home_id, t2.home_address
+        from person t1, home t2 where id = #{id} and t1.home_id = t2.home_id
+    </select>
+     <select id="selectHome" parameterType="int" resultType="demo.model.Home">
+         select home_id, home_address from home where home_id=#{home_id}
+     </select>
+
+    <!-- one to many-->
+    <select id="getHomePersons" resultMap="homePersons">
+        select t1.home_id, t1.home_address, t2.id, t2.name, t2.address, t2.email_gb
+        from home t1, person t2 where t1.home_id = #{homeId} and t1.home_id = t2.home_id
+    </select>
+
+    <select id="getHome" resultMap="homeJoinPerson">
+        select  home_id, home_address from home where home_id = #{homeId}
+    </select>
+
+    <select id="selectPerson" resultType="demo.model.Person">
+        select id, name, address, email_gb from person where home_id = #{homeId}
+    </select>
+
+</mapper>

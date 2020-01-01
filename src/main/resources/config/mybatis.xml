@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL" ></setting>
+    </settings>
+    <typeAliases>
+        <!--<typeAlias type="demo.model.Person"></typeAlias>-->
+        <package name="demo.model"></package>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/PersonMapper.xml"/>
+        <!--<mapper class="demo.dao.PersonAnnotation"></mapper>-->
+        <!--<package name="demo.dao"></package>-->
+        <mapper resource="mappers/joinmap.xml"></mapper>
+
+        <!-- many to many map-->
+        <mapper resource="mappers/homespersonsmap.xml"></mapper>
+
+        <mapper resource="mappers/dynamicsql.xml"></mapper>
+    </mappers>
+</configuration>

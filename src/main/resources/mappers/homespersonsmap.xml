@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.dao.PersonsAndHomesDao">
+
+    <resultMap id="homesandpersons" type="demo.model.Home">
+        <id column="home_id" property="homeId"></id>
+        <result column="home_address" property="homeAddress"></result>
+        <collection property="persons" ofType="demo.model.Person">
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="address" property="address"></result>
+            <result column="email_gb" property="emailGb"></result>
+        </collection>
+
+    </resultMap>
+
+    <select id="getManyHomeAndMaps" resultMap="homesandpersons">
+        select t1.home_id, t1.home_address, t2.id, t2.name, t2.address, t2.email_gb
+        from home t1 join person t2 on t1.home_id = t2.home_id
+        where t1.home_id > #{homeId}
+    </select>
+
+</mapper>
