@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.dao.CacheDao">
+    <cache></cache>
+    <select id="getPersonById" resultType="demo.model.Person" flushCache="false">
+        select * from person where id = #{id}
+    </select>
+
+    <insert id="insertPerson" parameterType="demo.model.Person">
+      insert into person (id, name, address, email_gb, home_id)
+      values(#{id}, #{name}, #{address}, #{emailGb}, #{homeId})
+    </insert>
+</mapper>

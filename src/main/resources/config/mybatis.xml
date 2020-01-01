@@ -7,6 +7,7 @@
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="jdbcTypeForNull" value="NULL" ></setting>
+        <setting name="cacheEnabled" value="true"></setting>
     </settings>
     <typeAliases>
         <!--<typeAlias type="demo.model.Person"></typeAlias>-->
@@ -33,5 +34,7 @@
         <mapper resource="mappers/homespersonsmap.xml"></mapper>
 
         <mapper resource="mappers/dynamicsql.xml"></mapper>
+
+        <mapper resource="mappers/cachemap.xml"></mapper>
     </mappers>
 </configuration>

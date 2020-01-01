@@ -2,8 +2,10 @@ package demo.model;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 @Alias("per")
-public class Person {
+public class Person implements Serializable {
 
     public Person()
     {
