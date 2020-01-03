@@ -5,6 +5,8 @@
 #maven build file
 /target/
 /target/*
+/MyBatisWeb/target/
+/MyBatisWeb/target/*
 
 #java class file
 *.class
