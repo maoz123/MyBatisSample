@@ -4,6 +4,7 @@
 
 #maven build file
 /target/
+/target/*
 
 #java class file
 *.class
