@@ -1,4 +1,4 @@
-package demo.config;
+package demo1.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.mybatis.spring.annotation.MapperScan;

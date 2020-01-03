@@ -1,7 +1,7 @@
-package demo.controller;
+package demo1.controller;
 
-import demo.models.Person;
-import demo.service.PersonService;
+import demo1.models.Person;
+import demo1.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

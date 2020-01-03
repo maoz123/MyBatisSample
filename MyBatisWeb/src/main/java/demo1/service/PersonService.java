@@ -1,7 +1,7 @@
-package demo.service;
+package demo1.service;
 
-import demo.dao.PersonDao;
-import demo.models.Person;
+import demo1.dao.PersonDao;
+import demo1.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

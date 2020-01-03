@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="demo.dao.PersonDao">
-    <select id="getPersonById" resultType="demo.models.Person">
+ <mapper namespace="demo1.dao.PersonDao">
+    <select id="getPersonById" resultType="demo1.models.Person">
     select id, name from person where id= #{id}
     </select>
  </mapper>

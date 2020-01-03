@@ -1,4 +1,4 @@
-package demo.models;
+package demo1.models;
 
 public class Person {
     private int id;
