@@ -1,0 +1,13 @@
+spring:
+  #数据源
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: citrix
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#mybatis配置
+mybatis:
+  mapperLocations: classpath:mybatis/mappers/*.xml
+
+
+  #config-location: classpath:mybaits/mybatis.xml
