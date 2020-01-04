@@ -30,4 +30,6 @@ public interface PersonDao {
     Map<Integer, Person> getPersonMaps(int id);
 
     Person getPersonSelfDefineResultMap(int id);
+
+    List<Person> getAllPerson();
 }
