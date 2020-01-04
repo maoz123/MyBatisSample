@@ -2,17 +2,10 @@ package demo.main;
 
 import demo.dao.PersonDao;
 import demo.model.Person;
-import demo.dao.PersonAnnotation;
-import org.apache.ibatis.io.Resources;
+import demo.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /*
 mybatis 允许增加返回值，支持Integer,Long. boolean， void
@@ -22,13 +15,7 @@ mybatis 允许增加返回值，支持Integer,Long. boolean， void
 
 public class MybatisMain {
     public static void main(String[] args) throws IOException {
-        String path = "config/mybatis.xml";
-        InputStream stream = Resources.getResourceAsStream(path);
-
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(stream);
-
-        //如果openSession没有参数，就不会自动提交，因此SQl语句就不work
-        SqlSession session = factory.openSession();
+        SqlSession session = SqlSessionUtils.getSqlSession();
 
         try
         {

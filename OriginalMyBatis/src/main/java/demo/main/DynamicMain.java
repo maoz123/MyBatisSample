@@ -2,23 +2,16 @@ package demo.main;
 
 import demo.dao.DynamicSqlDao;
 import demo.model.Person;
-import org.apache.ibatis.io.Resources;
+import demo.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DynamicMain {
     public static void main(String[] args) throws IOException {
-        String path = "config/mybatis.xml";
-
-        InputStream is = Resources.getResourceAsStream(path);
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
-        SqlSession session = factory.openSession();
+        SqlSession session = SqlSessionUtils.getSqlSession();
 
         try
         {
